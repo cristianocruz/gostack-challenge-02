@@ -20,7 +20,7 @@ app.post("/repositories", (request, response) => {
   const repository = { id: uuid(), title, url, techs, likes: 0 };
   repositories.push(repository);
 
-  return response.status(201).json({ repository });
+  return response.status(201).json({ ...repository });
 });
 
 app.put("/repositories/:id", (request, response) => {
@@ -39,7 +39,7 @@ app.put("/repositories/:id", (request, response) => {
   };
   repositories[repositoryIndex] = newRepository;
 
-  return response.status(201).json({ newRepository });
+  return response.status(201).json({ ...newRepository });
 });
 
 app.delete("/repositories/:id", (request, response) => {
@@ -71,7 +71,7 @@ app.post("/repositories/:id/like", (request, response) => {
   };
   repositories[repositoryIndex] = newRepository;
 
-  return response.status(200).json({ newRepository });
+  return response.status(200).json({ ...newRepository });
 });
 
 module.exports = app;
